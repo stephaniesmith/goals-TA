@@ -1,0 +1,21 @@
+{
+  "name": "goals-ta",
+  "version": "1.0.0",
+  "description": "Making some goals",
+  "main": "index.js",
+  "scripts": {
+    "test:app": "cd app && npm i && npm test && cd ..",
+    "test:server": "cd server && npm i && npm test && cd ..",
+    "test": "npm run test:app && npm run test:server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephaniesmith/goals-TA.git"
+  },
+  "author": "Stephanie Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephaniesmith/goals-TA/issues"
+  },
+  "homepage": "https://github.com/stephaniesmith/goals-TA#readme"
+}
