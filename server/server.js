@@ -74,6 +74,20 @@ app.post('/api/auth/signin', (req, res) => {
     });
 });
 
+app.use((req, res, next) => {
+  const id = req.get('Authorization');
+  if(!id) {
+    res.status(403).send({
+      error: 'No token found'
+    });
+    return;
+  }
+
+  req.userId = id;
+
+  next();
+});
+
 const chalk = require('chalk');
 
 const color = chalk.gray.bgWhite;
