@@ -11,8 +11,8 @@
     <pre>{{error}}</pre>
 
     <form @submit.prevent="handleSubmit">
-      <input v-model="credentials.email" placehoder="email">
-      <input v-model="credentials.password" placehoder="password">
+      <input v-model="credentials.email" placeholder="email">
+      <input v-model="credentials.password" placeholder="password">
       <button>{{label}}</button>
     </form>
   </div>
@@ -64,4 +64,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+  h2 {
+    font-size: 1.75em;
+    margin: 30px 0 20px 0;
+  }
+
+  form {
+    margin-top: 20px;
+  }
 </style>
