@@ -134,6 +134,24 @@ app.post('/api/me/goals', (req, res, next) => {
     .catch(next);
 });
 
+app.put('/api/me/goals', (req, res, next) => {
+  const { id, complete } = req.body;
+
+  client.query(`
+    UPDATE goals
+    SET
+      complete = $1
+    WHERE id = $2
+    AND user_id = $3
+    RETURNING *, user_id as "userId";
+  `,
+  [complete, id, req.userId])
+    .then(result => {
+      res.send(result.rows[0]);
+    })
+    .catch(next);
+});
+
 const chalk = require('chalk');
 
 const color = chalk.gray.bgWhite;
