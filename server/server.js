@@ -89,7 +89,6 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/goals', (req, res, next) => {
-  console.log('here');
   client.query(`
     SELECT
       g.goal,
@@ -103,6 +102,34 @@ app.get('/api/goals', (req, res, next) => {
   `)
     .then(result => {
       res.send(result.rows);
+    })
+    .catch(next);
+});
+
+app.get('/api/me/goals', (req, res, next) => {
+  client.query(`
+    SELECT id, goal, complete
+    FROM goals
+    WHERE user_id = $1
+  `,
+  [req.userId])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(next);
+});
+
+app.post('/api/me/goals', (req, res, next) => {
+  const { goal, complete } = req.body;
+
+  client.query(`
+    INSERT INTO goals (goal, complete, user_id)
+    VALUES ($1, $2, $3)
+    RETURNING *, user_id as "userId";
+  `,
+  [goal, complete, req.userId])
+    .then(result => {
+      res.send(result.rows[0]);
     })
     .catch(next);
 });
