@@ -1,0 +1,12 @@
+[
+  {
+    "goal": "Walk around a mountain",
+    "complete": true,
+    "userId": 1
+  },
+  {
+    "goal": "Climb a mountain",
+    "complete": false,
+    "userId": 2
+  }
+]
