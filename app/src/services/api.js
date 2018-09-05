@@ -30,6 +30,19 @@ export function checkForToken() {
   return user;
 }
 
+export function signUp(credentials) {
+  return fetch(`${AUTH_URL}/signup`, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(credentials)
+  })
+    .then(responseHandler)
+    .then(user => {
+      storeUser(user);
+      return user;
+    });
+}
+
 export function signIn(credentials) {
   return fetch(`${AUTH_URL}/signin`, {
     method: 'POST',
