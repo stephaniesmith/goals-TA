@@ -13,7 +13,7 @@
     <form @submit.prevent="handleSubmit">
       <input v-model="credentials.email" placehoder="email">
       <input v-model="credentials.password" placehoder="password">
-      <button>SignIn</button>
+      <button>{{label}}</button>
     </form>
   </div>
 </template>
@@ -45,7 +45,8 @@ export default {
   methods: {
     handleSubmit() {
       this.error = null;
-      signIn(this.credentials)
+      const action = this.isSignUp ? signUp : signIn;
+      action(this.credentials)
         .then(user => {
           this.onUser(user);
           this.$router.push('/');
