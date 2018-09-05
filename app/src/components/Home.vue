@@ -33,29 +33,29 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  margin-top: 30px;
-}
+  .home {
+    margin-top: 30px;
+  }
 
-h1 {
-  font-size: 2em;
-}
+  h1 {
+    font-size: 2em;
+  }
 
-h2 {
-  font-size: 1.75em;
-}
+  h2 {
+    font-size: 1.75em;
+  }
 
-p {
-    margin: 20px 0;
-}
+  p {
+      margin: 20px 0;
+  }
 
-li {
-  list-style: none;
-  background: gray;
-  border-radius: 10px;
-  color: white;
-  padding: 20px;
-  margin: 20px auto;
-  width: 50vw;
-}
+  li {
+    list-style: none;
+    background: gray;
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50vw;
+  }
 </style>
