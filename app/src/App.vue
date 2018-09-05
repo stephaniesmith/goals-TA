@@ -1,9 +1,13 @@
 <template>
   <div id="app">
+    <RouterLink to="/">Home</RouterLink>
+    &nbsp;
     <RouterLink to="/auth">signin/signup</RouterLink>
+
     <h1 v-if="user">Log Out</h1>
     <h1 v-if="!user">Login</h1>
-    <RouterView/>
+
+    <RouterView :onUSer="handleUser"/>
   </div>
 </template>
 
@@ -19,6 +23,11 @@ export default {
   },
   created() {
     this.user = checkForToken();
+  },
+  methods: {
+    handleUser(user) {
+      this.user = user;
+    }
   }
 };
 </script>
