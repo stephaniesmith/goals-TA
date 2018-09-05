@@ -28,6 +28,7 @@ export default {
       this.user = user;
     },
     handleSignOut() {
+      signOut();
       this.user = null;
       this.$router.push('/');
     }
