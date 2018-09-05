@@ -88,6 +88,25 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/api/goals', (req, res, next) => {
+  console.log('here');
+  client.query(`
+    SELECT
+      g.goal,
+      g.complete,
+      u.id as "userID",
+      u.email as user
+    FROM goals as g
+    JOIN users as u
+    ON g.user_id = u.id
+    ORDER BY g.user_id;
+  `)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(next);
+});
+
 const chalk = require('chalk');
 
 const color = chalk.gray.bgWhite;
