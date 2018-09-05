@@ -10,7 +10,39 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
-// const client = require('./db-client');
+const client = require('./db-client');
+
+app.post('/api/auth/signup', (req, res) => {
+  const { email, password } = req.body;
+
+  if(!email || !password) {
+    res.status(400).send({
+      error: 'email and password are required'
+    });
+    return;
+  }
+
+  client.query(`
+    SELECT count(*)
+    FROM users
+    WHERE email = $1
+  `,
+  [email])
+    .then(results => {
+      if(results.rows[0].count > 0) {
+        res.status(400).send({ error: 'email already in use' });
+        return;
+      }
+
+      client.query(`
+        INSERT INTO users (email, password)
+        values ($1, $2)
+        returning id, email
+      `,
+      [email, password])
+        .then(results => res.send(results.rows[0]));
+    });
+});
 
 const chalk = require('chalk');
 
