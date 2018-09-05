@@ -6,7 +6,7 @@
     &nbsp;
     <a v-if="user" href="/" @click.prevent="handleSignOut">Log Out</a>
 
-    <RouterView :onUser="handleUser"/>
+    <RouterView :onUser="handleUser" :user="user"/>
   </div>
 </template>
 

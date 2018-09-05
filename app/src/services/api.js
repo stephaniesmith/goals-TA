@@ -1,5 +1,6 @@
 const URL = '/api';
 const AUTH_URL = `${URL}/auth`;
+const GOALS_URL = `${URL}/goals`;
 
 let token = '';
 
@@ -59,4 +60,11 @@ export function signIn(credentials) {
 export function signOut() {
   token = '';
   window.localStorage.removeItem('user');
+}
+
+export function getGoals() {
+  return fetch(GOALS_URL, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
 }
