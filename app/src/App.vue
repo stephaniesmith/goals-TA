@@ -1,14 +1,25 @@
 <template>
   <div id="app">
     <RouterLink to="/auth">signin/signup</RouterLink>
+    <h1 v-if="user">Log Out</h1>
+    <h1 v-if="!user">Login</h1>
     <RouterView/>
   </div>
 </template>
 
 <script>
+import { checkForToken } from './services/api';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      user: null
+    };
+  },
+  created() {
+    this.user = checkForToken();
+  }
 };
 </script>
 
