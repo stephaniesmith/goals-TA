@@ -2,17 +2,16 @@
   <div id="app">
     <RouterLink to="/">Home</RouterLink>
     &nbsp;
-    <RouterLink to="/auth">signin/signup</RouterLink>
-
-    <h1 v-if="user">Log Out</h1>
-    <h1 v-if="!user">Login</h1>
+    <RouterLink v-if="!user" to="/auth">Login</RouterLink>
+    &nbsp;
+    <a v-if="user" href="/" @click.prevent="handleSignOut">Log Out</a>
 
     <RouterView :onUSer="handleUser"/>
   </div>
 </template>
 
 <script>
-import { checkForToken } from './services/api';
+import { checkForToken, signOut } from './services/api';
 
 export default {
   name: 'app',
@@ -27,6 +26,10 @@ export default {
   methods: {
     handleUser(user) {
       this.user = user;
+    },
+    handleSignOut() {
+      this.user = null;
+      this.$router.push('/');
     }
   }
 };

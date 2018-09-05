@@ -42,3 +42,8 @@ export function signIn(credentials) {
       return user;
     });
 }
+
+export function signOut() {
+  token = '';
+  window.localStorage.removeItem('user');
+}
