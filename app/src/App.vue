@@ -6,7 +6,7 @@
     &nbsp;
     <a v-if="user" href="/" @click.prevent="handleSignOut">Log Out</a>
 
-    <RouterView :onUSer="handleUser"/>
+    <RouterView :onUser="handleUser"/>
   </div>
 </template>
 
@@ -22,6 +22,13 @@ export default {
   },
   created() {
     this.user = checkForToken();
+  },
+  watch: {
+    type(newType, oldType) {
+      if(newType !== oldType) {
+        this.error = null;
+      }
+    }
   },
   methods: {
     handleUser(user) {

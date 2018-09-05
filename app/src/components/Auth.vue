@@ -23,7 +23,9 @@ import { signIn, signUp } from '../services/api';
 
 export default {
   name: 'Auth',
-  props: ['onUser'],
+  props: {
+    onUser: Function
+  },
   data() {
     return {
       credentials: {
