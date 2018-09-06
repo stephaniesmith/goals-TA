@@ -1,7 +1,7 @@
 <template>
     <li>
       {{goal.goal}}
-      <button type="button" @click="handleClick" :value="goal.id">Click</button>
+      <button :class="{ completed: goal.complete }" @click="handleClick">Click</button>
     </li>
 </template>
 
@@ -17,6 +17,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+button {
+    background-color: red;
+}
+.completed {
+  background-color: green;
+}
 
 </style>
