@@ -2,18 +2,21 @@
   <div>
   <h1>GOALSLIST</h1>
     <ul>
-      <li v-for="goal in goals"
+      <Goal v-for="goal in goals"
         :key="goal.id"
-      >
-      {{goal.goal}}
-      </li>
+        :goal="goal"
+      />
     </ul>
   </div>
 </template>
 
 <script>
+import Goal from './Goal';
 export default {
-  props: ['goals']
+  props: ['goals'],
+  components: {
+    Goal
+  }
 };
 </script>
 

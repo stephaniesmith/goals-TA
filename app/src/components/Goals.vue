@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>GOALS!</h1>
-    <GoalList :goals="goals"/>
     <AddGoal :onAdd="handleAdd"/>
+    <GoalList :goals="goals"/>
   </div>
 </template>
 
