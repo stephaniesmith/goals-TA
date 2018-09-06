@@ -1,7 +1,7 @@
 <template>
     <li>
       {{goal.goal}}
-      <button type="button" @click="handleUpdate" :value="goal.id">Click</button>
+      <button type="button" @click="handleClick" :value="goal.id">Click</button>
     </li>
 </template>
 
@@ -9,7 +9,8 @@
 export default {
   props: ['goal'],
   methods: {
-    handleUpdate() {
+    handleClick() {
+      this.goal.complete = !this.goal.complete ? true : false;
       console.log(this.goal);
     }
   }
