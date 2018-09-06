@@ -120,14 +120,14 @@ app.get('/api/goals/me', (req, res, next) => {
 });
 
 app.post('/api/goals/me', (req, res, next) => {
-  const { goal, complete } = req.body;
+  const { goal } = req.body;
 
   client.query(`
-    INSERT INTO goals (goal, complete, user_id)
-    VALUES ($1, $2, $3)
+    INSERT INTO goals (goal, user_id)
+    VALUES ($1, $2)
     RETURNING *, user_id as "userId";
   `,
-  [goal, complete, req.userId])
+  [goal, req.userId])
     .then(result => {
       res.send(result.rows[0]);
     })

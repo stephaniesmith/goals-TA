@@ -1,22 +1,28 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input>
+    <input v-model="goal.goal" placeholder="Write a goal">
     <button>Submit</button>
   </form>
 </template>
 
 <script>
+const initGoal = () => {
+  return {
+    goal: ''
+  };
+};
 
 export default {
   props: ['onAdd'],
   data() {
     return {
-      goal: ''
+      goal: initGoal()
     };
   },
   methods: {
     handleSubmit() {
-      console.log('goal', this.goal);
+      this.onAdd(this.goal);
+      this.goal = initGoal();
     }
   }
 };
