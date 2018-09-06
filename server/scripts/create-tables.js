@@ -10,7 +10,7 @@ client.query(`
   CREATE TABLE IF NOT EXISTS goals (
     id SERIAL PRIMARY KEY,
     goal VARCHAR(256) NOT NULL,
-    complete BOOLEAN NOT NULL,
+    complete BOOLEAN DEFAULT false,
     user_id INTEGER NOT NULL REFERENCES users(id)        
   );
 `)
