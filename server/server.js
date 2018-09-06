@@ -106,7 +106,7 @@ app.get('/api/goals', (req, res, next) => {
     .catch(next);
 });
 
-app.get('/api/me/goals', (req, res, next) => {
+app.get('/api/goals/me', (req, res, next) => {
   client.query(`
     SELECT id, goal, complete
     FROM goals
@@ -119,7 +119,7 @@ app.get('/api/me/goals', (req, res, next) => {
     .catch(next);
 });
 
-app.post('/api/me/goals', (req, res, next) => {
+app.post('/api/goals/me', (req, res, next) => {
   const { goal, complete } = req.body;
 
   client.query(`
@@ -134,7 +134,7 @@ app.post('/api/me/goals', (req, res, next) => {
     .catch(next);
 });
 
-app.put('/api/me/goals', (req, res, next) => {
+app.put('/api/goals/me', (req, res, next) => {
   const { id, complete } = req.body;
 
   client.query(`
