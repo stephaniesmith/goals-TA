@@ -4,6 +4,8 @@
     &nbsp;
     <RouterLink v-if="!user" to="/auth">Login</RouterLink>
     &nbsp;
+    <RouterLink v-if="user" to="/goals">My Goals</RouterLink>
+    &nbsp;
     <a v-if="user" href="/" @click.prevent="handleSignOut">Log Out</a>
 
     <RouterView :onUser="handleUser" :user="user"/>
