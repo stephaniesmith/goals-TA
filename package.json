@@ -7,7 +7,7 @@
     "test:app": "cd app && npm i && npm test && cd ..",
     "test:server": "cd server && npm i && npm test && cd ..",
     "test": "npm run test:app && npm run test:server",
-    "start": "cd server && npm start"
+    "start": "cd server && npm i && npm start"
   },
   "repository": {
     "type": "git",
