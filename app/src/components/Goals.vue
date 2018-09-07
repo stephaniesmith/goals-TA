@@ -26,7 +26,6 @@ export default {
     getMyGoals()
       .then(goals => {
         this.goals = goals;
-        console.log(this.goals);
       });
   },
   methods: {

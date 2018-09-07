@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  props: ['goal'],
+  props: ['goal', 'onUpdate'],
   methods: {
     handleClick() {
       this.goal.complete = !this.goal.complete ? true : false;
-      console.log(this.goal);
+      this.onUpdate(this.goal);
     }
   }
 };
