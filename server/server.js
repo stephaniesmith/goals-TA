@@ -89,7 +89,6 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/goals', (req, res, next) => {
-  console.log('here');
   client.query(`
     SELECT
       g.goal,
@@ -103,6 +102,52 @@ app.get('/api/goals', (req, res, next) => {
   `)
     .then(result => {
       res.send(result.rows);
+    })
+    .catch(next);
+});
+
+app.get('/api/goals/me', (req, res, next) => {
+  client.query(`
+    SELECT id, goal, complete
+    FROM goals
+    WHERE user_id = $1
+  `,
+  [req.userId])
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(next);
+});
+
+app.post('/api/goals/me', (req, res, next) => {
+  const { goal } = req.body;
+
+  client.query(`
+    INSERT INTO goals (goal, user_id)
+    VALUES ($1, $2)
+    RETURNING *, user_id as "userId";
+  `,
+  [goal, req.userId])
+    .then(result => {
+      res.send(result.rows[0]);
+    })
+    .catch(next);
+});
+
+app.put('/api/goals/me', (req, res, next) => {
+  const { id, complete } = req.body;
+
+  client.query(`
+    UPDATE goals
+    SET
+      complete = $1
+    WHERE id = $2
+    AND user_id = $3
+    RETURNING *, user_id as "userId";
+  `,
+  [complete, id, req.userId])
+    .then(result => {
+      res.send(result.rows[0]);
     })
     .catch(next);
 });

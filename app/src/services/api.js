@@ -68,3 +68,28 @@ export function getGoals() {
   })
     .then(responseHandler);
 }
+
+export function getMyGoals() {
+  return fetch(`${GOALS_URL}/me`, {
+    headers: getHeaders()
+  })
+    .then(responseHandler);
+}
+
+export function postGoal(goal) {
+  return fetch(`${GOALS_URL}/me`, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(goal)
+  })
+    .then(responseHandler);
+}
+
+export function putGoal(goal) {
+  return fetch(`${GOALS_URL}/me`, {
+    method: 'PUT',
+    headers: getHeaders(),
+    body: JSON.stringify(goal)
+  })
+    .then(responseHandler);
+}
